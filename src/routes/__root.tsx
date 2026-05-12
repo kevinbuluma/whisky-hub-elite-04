@@ -9,6 +9,10 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { ThemeProvider } from "@/lib/theme";
+import { CartProvider } from "@/lib/cart";
+import { AgeGate } from "@/components/AgeGate";
+import { WhatsAppFAB } from "@/components/WhatsAppFAB";
 
 function NotFoundComponent() {
   return (
@@ -72,20 +76,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Whisky Hub Rongai — Premium Liquor Delivery in Nairobi" },
+      { name: "description", content: "Rongai's premium liquor experience. Whisky, wines, vodka, gin and Kenyan favorites delivered in 45 minutes. M-Pesa & WhatsApp ordering." },
+      { name: "author", content: "Whisky Hub Rongai" },
+      { property: "og:title", content: "Whisky Hub Rongai — Premium Liquor Delivery" },
+      { property: "og:description", content: "Premium spirits delivered to your door in Rongai, Nairobi. 45-min delivery. M-Pesa accepted." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -113,7 +116,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <ThemeProvider>
+        <CartProvider>
+          <AgeGate />
+          <Outlet />
+          <WhatsAppFAB />
+        </CartProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
