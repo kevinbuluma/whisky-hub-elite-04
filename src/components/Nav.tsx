@@ -11,6 +11,8 @@ const links = [
   { to: "/shop?cat=Wine", label: "Wines" },
   { to: "/shop?cat=Kenyan", label: "Kenyan" },
   { to: "/offers", label: "Offers" },
+  { to: "/about", label: "About" },
+  { to: "/delivery", label: "Delivery" },
   { to: "/contact", label: "Contact" },
 ];
 
