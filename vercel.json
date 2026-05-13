@@ -7,7 +7,11 @@
   },
   "outputDirectory": "public",
   "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/_assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/favicon.ico", "dest": "/favicon.ico" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/api/index.js" }
   ]
 }
+

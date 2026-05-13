@@ -5,24 +5,27 @@ import { existsSync } from 'node:fs';
 const root = process.cwd();
 
 async function main() {
-  // 1. Assets
   const distPath = join(root, 'dist');
-  const srcAssets = join(distPath, 'client', 'assets');
-  const destAssets = join(root, 'public', 'assets');
+  const publicPath = join(root, 'public');
+
+  // 1. Prepare Public Directory
+  // We copy everything from dist/client to public so Vercel can serve it statically
+  const srcClient = join(distPath, 'client');
   
-  await rm(destAssets, { recursive: true, force: true });
-  if (existsSync(srcAssets)) {
-    await mkdir(destAssets, { recursive: true });
-    await cp(srcAssets, destAssets, { recursive: true });
-    console.log(`Copied ${srcAssets} to ${destAssets}`);
+  if (existsSync(srcClient)) {
+    // We don't want to delete the whole public dir if it contains other things (like api/ is at root though)
+    // But since outputDirectory is "public", we should ensure it's clean for the assets
+    await mkdir(publicPath, { recursive: true });
+    await cp(srcClient, publicPath, { recursive: true });
+    console.log(`Copied ${srcClient} contents to ${publicPath}`);
   }
 
-  // 2. Favicon
-  const srcFavicon = join(distPath, 'client', 'favicon.ico');
-  const destFavicon = join(root, 'public', 'favicon.ico');
-  if (existsSync(srcFavicon)) {
-    await cp(srcFavicon, destFavicon);
-    console.log(`Copied ${srcFavicon} to ${destFavicon}`);
+  // 2. Ensure assets are in public/assets (redundant if already in dist/client/assets but safe)
+  const srcAssets = join(srcClient, 'assets');
+  const destAssets = join(publicPath, 'assets');
+  if (existsSync(srcAssets) && !existsSync(destAssets)) {
+    await cp(srcAssets, destAssets, { recursive: true });
+    console.log(`Ensured assets are in ${destAssets}`);
   }
 }
 
@@ -30,3 +33,4 @@ main().catch((error) => {
   console.error('Failed to prepare Vercel build:', error);
   process.exit(1);
 });
+
