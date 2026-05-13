@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { fmtKES, type Product } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { useState } from "react";
@@ -18,7 +19,11 @@ export function ProductCard({ product, delay = 0 }: { product: Product; delay?: 
       className="group bg-surface rounded-2xl p-4 border border-border hover:border-amber/50 transition-all hover:-translate-y-1 animate-fade-up"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="relative aspect-[3/4] mb-5 overflow-hidden rounded-xl bg-black/40">
+      <Link
+        to="/product/$id"
+        params={{ id: product.id }}
+        className="block relative aspect-[3/4] mb-5 overflow-hidden rounded-xl bg-black/40"
+      >
         <img
           src={product.image}
           alt={product.name}
@@ -34,11 +39,13 @@ export function ProductCard({ product, delay = 0 }: { product: Product; delay?: 
           <Star className="size-3 fill-amber text-amber" />
           {product.rating}
         </div>
-      </div>
+      </Link>
       <p className="text-foreground/50 text-[10px] uppercase tracking-widest mb-1 font-mono">
         {product.category}
       </p>
-      <h4 className="font-medium text-base mb-1 leading-tight">{product.name}</h4>
+      <Link to="/product/$id" params={{ id: product.id }}>
+        <h4 className="font-medium text-base mb-1 leading-tight hover:text-amber transition">{product.name}</h4>
+      </Link>
       <p className="text-foreground/40 text-xs mb-4">{product.subtitle}</p>
       <div className="flex items-baseline gap-2 mb-4">
         <span className="text-lg font-mono text-amber">{fmtKES(product.price)}</span>
