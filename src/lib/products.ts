@@ -190,7 +190,7 @@ export const products: Product[] = categoryList.flatMap((cat) =>
   seeds[cat].map((s, i) => ({
     ...s,
     category: cat,
-    image: pic(cat, i),
+    image: pic(cat),
     description:
       `${s.name} — ${s.subtitle}. Sourced and stored under ideal conditions at Whisky Hub Rongai. ` +
       `Perfect for gifting, parties, or a quiet evening in. Delivered cold and discreetly across Rongai and Nairobi.`,
