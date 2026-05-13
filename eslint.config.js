@@ -36,5 +36,12 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    files: ["src/components/ui/**/*.{ts,tsx}", "src/lib/cart.tsx", "src/lib/theme.tsx"],
+    rules: {
+      // shadcn/ui exports variant helpers next to components; contexts export hooks + provider.
+      "react-refresh/only-export-components": "off",
+    },
+  },
   eslintPluginPrettier,
 );

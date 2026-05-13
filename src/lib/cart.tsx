@@ -27,7 +27,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) setItems(JSON.parse(raw));
-    } catch {}
+    } catch {
+      // Ignore localStorage errors
+    }
   }, []);
 
   useEffect(() => {
@@ -43,12 +45,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   const remove = (id: string) => setItems((prev) => prev.filter((i) => i.product.id !== id));
   const setQty = (id: string, qty: number) =>
-    setItems((prev) => prev.map((i) => (i.product.id === id ? { ...i, qty: Math.max(1, qty) } : i)));
+    setItems((prev) =>
+      prev.map((i) => (i.product.id === id ? { ...i, qty: Math.max(1, qty) } : i)),
+    );
   const clear = () => setItems([]);
   const count = items.reduce((a, i) => a + i.qty, 0);
   const total = items.reduce((a, i) => a + i.qty * i.product.price, 0);
 
-  return <Ctx.Provider value={{ items, add, remove, setQty, clear, count, total }}>{children}</Ctx.Provider>;
+  return (
+    <Ctx.Provider value={{ items, add, remove, setQty, clear, count, total }}>
+      {children}
+    </Ctx.Provider>
+  );
 }
 
 export function useCart() {

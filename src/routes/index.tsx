@@ -4,22 +4,47 @@ import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { products, categories } from "@/lib/products";
 import heroImg from "@/assets/hero-pour.jpg";
-import { ArrowRight, Truck, Smartphone, MessageCircle, Sparkles, Wine, Beer, GlassWater } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  ArrowRight,
+  Truck,
+  Smartphone,
+  MessageCircle,
+  Sparkles,
+  Wine,
+  Beer,
+  GlassWater,
+} from "lucide-react";
+import { useEffect, useState, type ComponentType } from "react";
 
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
       { title: "Whisky Hub Rongai — Premium Liquor Delivery" },
-      { name: "description", content: "Premium whisky, wines, vodka, gin & Kenyan favorites delivered to your door in Rongai, Nairobi. 45-minute delivery. M-Pesa accepted." },
+      {
+        name: "description",
+        content:
+          "Premium whisky, wines, vodka, gin & Kenyan favorites delivered to your door in Rongai, Nairobi. 45-minute delivery. M-Pesa accepted.",
+      },
     ],
   }),
 });
 
-const catIcons: Record<string, any> = {
-  Whisky: GlassWater, Vodka: GlassWater, Gin: GlassWater,
-  Wine: Wine, Tequila: GlassWater, Champagne: Sparkles, Beer: Beer, Kenyan: Beer,
+const catIcons: Record<string, ComponentType<{ className?: string }>> = {
+  Whisky: GlassWater,
+  Vodka: GlassWater,
+  Gin: GlassWater,
+  Wine: Wine,
+  Tequila: GlassWater,
+  Champagne: Sparkles,
+  Beer: Beer,
+  Kenyan: Beer,
+};
+
+type ShopSearch = {
+  cat?: string;
+  q?: string;
+  sort?: "popular" | "price-asc" | "price-desc" | "new";
 };
 
 function Home() {
@@ -34,7 +59,11 @@ function Home() {
       {/* Hero */}
       <section className="relative h-[88vh] min-h-[600px] flex items-center px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={heroImg} alt="Premium whisky pour" className="w-full h-full object-cover opacity-60" />
+          <img
+            src={heroImg}
+            alt="Premium whisky pour"
+            className="w-full h-full object-cover opacity-60"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
         </div>
@@ -49,8 +78,8 @@ function Home() {
               <span className="text-amber">Liquor Experience</span>
             </h1>
             <p className="text-foreground/70 text-lg max-w-xl mb-10 leading-relaxed">
-              Curated whisky, fine wines, and Kenyan favorites — delivered ice-cold
-              to your door. Pay via M-Pesa, Card, or Cash.
+              Curated whisky, fine wines, and Kenyan favorites — delivered ice-cold to your door.
+              Pay via M-Pesa, Card, or Cash.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -84,9 +113,21 @@ function Home() {
       <section className="border-y border-border bg-amber/5">
         <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: Truck, title: "Rongai Express", body: "Under 45-min doorstep delivery across Rongai & environs." },
-            { icon: Smartphone, title: "M-Pesa Ready", body: "Pay instantly via M-Pesa, Card or Cash on Delivery." },
-            { icon: MessageCircle, title: "WhatsApp Concierge", body: "Custom orders & party packages — message our dispatch." },
+            {
+              icon: Truck,
+              title: "Rongai Express",
+              body: "Under 45-min doorstep delivery across Rongai & environs.",
+            },
+            {
+              icon: Smartphone,
+              title: "M-Pesa Ready",
+              body: "Pay instantly via M-Pesa, Card or Cash on Delivery.",
+            },
+            {
+              icon: MessageCircle,
+              title: "WhatsApp Concierge",
+              body: "Custom orders & party packages — message our dispatch.",
+            },
           ].map(({ icon: Icon, title, body }) => (
             <div key={title} className="flex items-start gap-4">
               <div className="size-12 rounded-full bg-amber/10 border border-amber/20 grid place-items-center text-amber shrink-0">
@@ -105,7 +146,10 @@ function Home() {
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="flex items-end justify-between mb-8">
           <h2 className="font-display text-3xl md:text-4xl uppercase">Shop by Category</h2>
-          <Link to="/shop" className="text-amber text-sm uppercase tracking-widest border-b border-amber pb-1">
+          <Link
+            to="/shop"
+            className="text-amber text-sm uppercase tracking-widest border-b border-amber pb-1"
+          >
             All Spirits
           </Link>
         </div>
@@ -116,7 +160,7 @@ function Home() {
               <Link
                 key={c}
                 to="/shop"
-                search={{ cat: c } as any}
+                search={{ cat: c } as ShopSearch}
                 className="group bg-surface border border-border rounded-xl p-4 flex flex-col items-center gap-2 hover:border-amber/50 hover:bg-amber/5 transition-all"
               >
                 <div className="size-12 rounded-full bg-amber/10 grid place-items-center text-amber group-hover:scale-110 transition-transform">
@@ -135,7 +179,9 @@ function Home() {
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
-            <p className="text-xs font-mono uppercase tracking-[0.3em] text-amber mb-2">⏰ Limited Time</p>
+            <p className="text-xs font-mono uppercase tracking-[0.3em] text-amber mb-2">
+              ⏰ Limited Time
+            </p>
             <h2 className="font-display text-3xl md:text-4xl uppercase">Weekly Deals</h2>
           </div>
           <Countdown />
@@ -151,15 +197,23 @@ function Home() {
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex items-end justify-between mb-10">
           <div>
-            <p className="text-xs font-mono uppercase tracking-[0.3em] text-amber mb-2">Top Shelf</p>
+            <p className="text-xs font-mono uppercase tracking-[0.3em] text-amber mb-2">
+              Top Shelf
+            </p>
             <h2 className="font-display text-3xl md:text-4xl uppercase">Whisky Collection</h2>
           </div>
-          <Link to="/shop" search={{ cat: "Whisky" } as any} className="text-amber text-sm uppercase tracking-widest border-b border-amber pb-1">
+          <Link
+            to="/shop"
+            search={{ cat: "Whisky" } as ShopSearch}
+            className="text-amber text-sm uppercase tracking-widest border-b border-amber pb-1"
+          >
             View All
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {whisky.map((p, i) => <ProductCard key={p.id} product={p} delay={i * 80} />)}
+          {whisky.map((p, i) => (
+            <ProductCard key={p.id} product={p} delay={i * 80} />
+          ))}
         </div>
       </section>
 
@@ -168,15 +222,23 @@ function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <p className="text-xs font-mono uppercase tracking-[0.3em] text-amber mb-2">🇰🇪 Local Heroes</p>
+              <p className="text-xs font-mono uppercase tracking-[0.3em] text-amber mb-2">
+                🇰🇪 Local Heroes
+              </p>
               <h2 className="font-display text-3xl md:text-4xl uppercase">Kenyan Favorites</h2>
             </div>
-            <Link to="/shop" search={{ cat: "Kenyan" } as any} className="text-amber text-sm uppercase tracking-widest border-b border-amber pb-1">
+            <Link
+              to="/shop"
+              search={{ cat: "Kenyan" } as ShopSearch}
+              className="text-amber text-sm uppercase tracking-widest border-b border-amber pb-1"
+            >
               View All
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {kenyan.map((p, i) => <ProductCard key={p.id} product={p} delay={i * 80} />)}
+            {kenyan.map((p, i) => (
+              <ProductCard key={p.id} product={p} delay={i * 80} />
+            ))}
           </div>
         </div>
       </section>
@@ -185,17 +247,22 @@ function Home() {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber/20 via-surface to-background border border-amber/20 p-10 md:p-16">
           <div className="relative z-10 max-w-2xl">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-amber mb-4">Party Packages</p>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-amber mb-4">
+              Party Packages
+            </p>
             <h2 className="font-display text-4xl md:text-6xl uppercase mb-6">
-              Throwing a party?<br /><span className="text-amber">We've got you.</span>
+              Throwing a party?
+              <br />
+              <span className="text-amber">We've got you.</span>
             </h2>
             <p className="text-foreground/70 mb-8 max-w-lg">
-              Custom bundles for house parties, weddings, corporate events and clubs.
-              Bulk pricing, fast delivery, and free glassware on orders over KES 25,000.
+              Custom bundles for house parties, weddings, corporate events and clubs. Bulk pricing,
+              fast delivery, and free glassware on orders over KES 25,000.
             </p>
             <a
               href="https://wa.me/254700000000?text=Hi%20Whisky%20Hub%2C%20I%27d%20like%20a%20party%20package%20quote"
-              target="_blank" rel="noopener"
+              target="_blank"
+              rel="noopener"
               className="inline-flex items-center gap-2 bg-amber text-black font-bold py-4 px-8 rounded-full text-sm uppercase tracking-widest hover:bg-gold transition"
             >
               <MessageCircle className="size-4" /> Get a Quote
@@ -231,7 +298,10 @@ function Countdown() {
         { v: t.m, l: "Min" },
         { v: t.s, l: "Sec" },
       ].map((x) => (
-        <div key={x.l} className="bg-surface border border-amber/20 rounded-lg px-4 py-2 text-center min-w-[64px]">
+        <div
+          key={x.l}
+          className="bg-surface border border-amber/20 rounded-lg px-4 py-2 text-center min-w-[64px]"
+        >
           <div className="text-amber text-xl font-bold tabular-nums">{pad(x.v)}</div>
           <div className="text-[9px] uppercase text-foreground/40 tracking-widest">{x.l}</div>
         </div>

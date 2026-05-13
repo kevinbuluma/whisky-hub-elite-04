@@ -22,9 +22,16 @@ function Contact() {
               { icon: MapPin, title: "Location", body: "Magadi Road, Rongai, Nairobi, Kenya" },
               { icon: Phone, title: "Phone", body: "+254 700 000 000" },
               { icon: Mail, title: "Email", body: "hello@whiskyhub.co.ke" },
-              { icon: Clock, title: "Hours", body: "Mon–Thu 10AM–11PM · Fri–Sat 10AM–3AM · Sun 12PM–10PM" },
+              {
+                icon: Clock,
+                title: "Hours",
+                body: "Mon–Thu 10AM–11PM · Fri–Sat 10AM–3AM · Sun 12PM–10PM",
+              },
             ].map((x) => (
-              <div key={x.title} className="flex items-start gap-4 bg-surface border border-border rounded-2xl p-5">
+              <div
+                key={x.title}
+                className="flex items-start gap-4 bg-surface border border-border rounded-2xl p-5"
+              >
                 <div className="size-12 rounded-full bg-amber/10 grid place-items-center text-amber shrink-0">
                   <x.icon className="size-5" />
                 </div>
@@ -36,7 +43,8 @@ function Contact() {
             ))}
             <a
               href="https://wa.me/254700000000"
-              target="_blank" rel="noopener"
+              target="_blank"
+              rel="noopener"
               className="inline-flex items-center gap-2 bg-amber text-black font-bold py-4 px-8 rounded-full text-sm uppercase tracking-widest hover:bg-gold transition"
             >
               <MessageCircle className="size-4" /> Message on WhatsApp

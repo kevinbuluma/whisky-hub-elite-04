@@ -17,10 +17,13 @@ export function AgeGate() {
   return (
     <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md flex items-center justify-center p-6 text-center animate-fade-in">
       <div className="max-w-md">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-amber mb-6">Whisky Hub Rongai</p>
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-amber mb-6">
+          Whisky Hub Rongai
+        </p>
         <h1 className="font-display text-5xl uppercase mb-4 text-amber">Drink Responsibly</h1>
         <p className="text-foreground/60 mb-8">
-          You must be 18 years or older to enter. Strictly no sale to underage persons. Delivery within Nairobi only.
+          You must be 18 years or older to enter. Strictly no sale to underage persons. Delivery
+          within Nairobi only.
         </p>
         <div className="flex flex-col gap-3">
           <button

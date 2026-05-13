@@ -86,30 +86,63 @@
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 30px -10px var(--amber); }
-  50% { box-shadow: 0 0 50px -5px var(--amber); }
+  0%,
+  100% {
+    box-shadow: 0 0 30px -10px var(--amber);
+  }
+  50% {
+    box-shadow: 0 0 50px -5px var(--amber);
+  }
 }
 
 @layer utilities {
-  .animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
-  .animate-fade-in { animation: fade-in 0.5s ease-out both; }
-  .animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
-  .font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
-  .font-mono { font-family: var(--font-mono); }
-  .glass { background: color-mix(in oklab, var(--background) 60%, transparent); backdrop-filter: blur(20px); }
+  .animate-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out both;
+  }
+  .animate-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .glass {
+    background: color-mix(in oklab, var(--background) 60%, transparent);
+    backdrop-filter: blur(20px);
+  }
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { font-family: "Inter", system-ui, sans-serif; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

@@ -13,7 +13,9 @@ export function WhatsAppFAB() {
       aria-label="Order via WhatsApp"
     >
       <MessageCircle className="size-5" />
-      <span className="hidden sm:inline font-bold text-sm uppercase tracking-wide">Order on WhatsApp</span>
+      <span className="hidden sm:inline font-bold text-sm uppercase tracking-wide">
+        Order on WhatsApp
+      </span>
     </a>
   );
 }
