@@ -40,14 +40,16 @@ export function Footer() {
             </h5>
             <ul className="text-foreground/50 text-sm space-y-3">
               <li className="flex items-start gap-2">
-                <MapPin className="size-4 text-amber shrink-0 mt-0.5" /> Magadi Road, Rongai,
-                Nairobi
+                <MapPin className="size-4 text-amber shrink-0 mt-0.5" />
+                <span>Magadi Road, Rongai, Nairobi</span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="size-4 text-amber" /> +254 700 000 000
+                <Phone className="size-4 text-amber" />
+                <span>+254 700 000 000</span>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="size-4 text-amber" /> hello@whiskyhub.co.ke
+                <Mail className="size-4 text-amber" />
+                <span>hello@whiskyhub.co.ke</span>
               </li>
             </ul>
           </div>

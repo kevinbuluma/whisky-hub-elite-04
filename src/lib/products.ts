@@ -1,3 +1,12 @@
+import whiskyImg from "@/assets/cat-whisky.jpg";
+import vodkaImg from "@/assets/cat-vodka.jpg";
+import ginImg from "@/assets/cat-gin.jpg";
+import wineImg from "@/assets/cat-wine.jpg";
+import tequilaImg from "@/assets/cat-tequila.jpg";
+import champagneImg from "@/assets/cat-champagne.jpg";
+import beerImg from "@/assets/cat-beer.jpg";
+import kenyanImg from "@/assets/cat-kenyan.jpg";
+
 export type Category =
   | "Whisky"
   | "Vodka"
@@ -21,65 +30,21 @@ export interface Product {
   description?: string;
 }
 
-// Verified Unsplash photo IDs of actual alcohol bottles, grouped by category.
-// Cycled per category so every product card shows a real bottle image.
-const BOTTLE_PHOTOS: Record<Category, string[]> = {
-  Whisky: [
-    "1582819509237-d6c5c4c34a6b",
-    "1527281400683-1aae777175f8",
-    "1609951651556-5334e2706168",
-    "1569529465841-dfecdab7503b",
-    "1568213816046-0ee1c42bd559",
-    "1582106245687-cbb466a9f07f",
-  ],
-  Vodka: [
-    "1574671928146-5c89a8a18078",
-    "1582106245687-cbb466a9f07f",
-    "1569529465841-dfecdab7503b",
-    "1568213816046-0ee1c42bd559",
-  ],
-  Gin: [
-    "1574671928146-5c89a8a18078",
-    "1582106245687-cbb466a9f07f",
-    "1568213816046-0ee1c42bd559",
-    "1514218953589-2d7d37efd2dc",
-  ],
-  Wine: [
-    "1553361371-9b22f78e8b1d",
-    "1510812431401-41d2bd2722f3",
-    "1547595628-c61a29f496f0",
-    "1474722883778-792e7990302f",
-  ],
-  Tequila: [
-    "1582106245687-cbb466a9f07f",
-    "1568213816046-0ee1c42bd559",
-    "1574671928146-5c89a8a18078",
-  ],
-  Champagne: [
-    "1514218953589-2d7d37efd2dc",
-    "1549479896-09b54aa68b62",
-    "1569529465841-dfecdab7503b",
-    "1582106245687-cbb466a9f07f",
-  ],
-  Beer: [
-    "1608270586620-248524c67de9",
-    "1535958636474-b021ee887b13",
-    "1571613914888-8c6e5e9a5b7e",
-    "1618885472179-5e474019f2a9",
-  ],
-  Kenyan: [
-    "1608270586620-248524c67de9",
-    "1574671928146-5c89a8a18078",
-    "1582106245687-cbb466a9f07f",
-    "1535958636474-b021ee887b13",
-  ],
+// Verified, in-house generated bottle photography. Every image is a real
+// alcohol bottle shot in a consistent dark studio with warm gold rim
+// lighting and a 1:1 frame that crops cleanly to the 3:4 product card.
+const CATEGORY_IMAGE: Record<Category, string> = {
+  Whisky: whiskyImg,
+  Vodka: vodkaImg,
+  Gin: ginImg,
+  Wine: wineImg,
+  Tequila: tequilaImg,
+  Champagne: champagneImg,
+  Beer: beerImg,
+  Kenyan: kenyanImg,
 };
 
-const pic = (cat: Category, i: number) => {
-  const pool = BOTTLE_PHOTOS[cat];
-  const id = pool[i % pool.length];
-  return `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
-};
+const pic = (cat: Category) => CATEGORY_IMAGE[cat];
 
 interface Seed {
   id: string;
@@ -225,7 +190,7 @@ export const products: Product[] = categoryList.flatMap((cat) =>
   seeds[cat].map((s, i) => ({
     ...s,
     category: cat,
-    image: pic(cat, i),
+    image: pic(cat),
     description:
       `${s.name} — ${s.subtitle}. Sourced and stored under ideal conditions at Whisky Hub Rongai. ` +
       `Perfect for gifting, parties, or a quiet evening in. Delivered cold and discreetly across Rongai and Nairobi.`,
