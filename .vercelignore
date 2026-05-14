@@ -4,5 +4,4 @@ dist
 .vercel
 .wrangler
 .lovable
-public/assets
 scripts
