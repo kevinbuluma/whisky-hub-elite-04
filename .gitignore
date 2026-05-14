@@ -35,6 +35,6 @@ dist-ssr
 # Vercel build output
 public/assets/
 public/favicon.ico
-assets/
+/assets/
 favicon.ico
 .vercel
