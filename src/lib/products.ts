@@ -33,7 +33,7 @@ export interface Product {
 // Verified, in-house generated bottle photography. Every image is a real
 // alcohol bottle shot in a consistent dark studio with warm gold rim
 // lighting and a 1:1 frame that crops cleanly to the 3:4 product card.
-const CATEGORY_IMAGE: Record<Category, string> = {
+export const CATEGORY_IMAGE: Record<Category, string> = {
   Whisky: whiskyImg,
   Vodka: vodkaImg,
   Gin: ginImg,

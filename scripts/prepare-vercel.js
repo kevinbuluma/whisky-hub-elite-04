@@ -9,12 +9,15 @@ async function main() {
   const publicPath = join(root, 'public');
 
   // 1. Prepare Public Directory
-  // We copy everything from dist/client to public so Vercel can serve it statically
+  // We clear the public directory first to ensure no stale assets remain
+  if (existsSync(publicPath)) {
+    await rm(publicPath, { recursive: true, force: true });
+    console.log(`Cleared existing ${publicPath}`);
+  }
+
   const srcClient = join(distPath, 'client');
   
   if (existsSync(srcClient)) {
-    // We don't want to delete the whole public dir if it contains other things (like api/ is at root though)
-    // But since outputDirectory is "public", we should ensure it's clean for the assets
     await mkdir(publicPath, { recursive: true });
     await cp(srcClient, publicPath, { recursive: true });
     console.log(`Copied ${srcClient} contents to ${publicPath}`);

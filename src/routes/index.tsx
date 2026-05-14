@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
-import { products, categories } from "@/lib/products";
+import { products, categories, CATEGORY_IMAGE } from "@/lib/products";
 import heroImg from "@/assets/hero-pour.jpg";
 import {
   ArrowRight,
@@ -161,12 +161,15 @@ function Home() {
                 key={c}
                 to="/shop"
                 search={{ cat: c } as ShopSearch}
-                className="group bg-surface border border-border rounded-xl p-4 flex flex-col items-center gap-2 hover:border-amber/50 hover:bg-amber/5 transition-all"
+                className="group relative overflow-hidden bg-surface border border-border rounded-xl aspect-square flex flex-col items-center justify-end p-4 hover:border-amber/50 transition-all"
               >
-                <div className="size-12 rounded-full bg-amber/10 grid place-items-center text-amber group-hover:scale-110 transition-transform">
-                  <Icon className="size-5" />
-                </div>
-                <span className="text-xs font-mono uppercase tracking-wider text-foreground/70 group-hover:text-amber">
+                <img
+                  src={CATEGORY_IMAGE[c]}
+                  alt={c}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <span className="relative z-10 text-xs font-mono uppercase tracking-wider text-white group-hover:text-amber">
                   {c}
                 </span>
               </Link>
