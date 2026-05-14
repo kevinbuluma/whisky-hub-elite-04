@@ -1,11 +1,11 @@
-import whiskyImg from "@/assets/cat-whisky.jpg";
-import vodkaImg from "@/assets/cat-vodka.jpg";
-import ginImg from "@/assets/cat-gin.jpg";
-import wineImg from "@/assets/cat-wine.jpg";
-import tequilaImg from "@/assets/cat-tequila.jpg";
-import champagneImg from "@/assets/cat-champagne.jpg";
-import beerImg from "@/assets/cat-beer.jpg";
-import kenyanImg from "@/assets/cat-kenyan.jpg";
+import whiskyImg from "@/assets/cat-whisky.png";
+import vodkaImg from "@/assets/cat-vodka.png";
+import ginImg from "@/assets/cat-gin.png";
+import wineImg from "@/assets/cat-wine.png";
+import tequilaImg from "@/assets/cat-tequila.png";
+import champagneImg from "@/assets/cat-champagne.png";
+import beerImg from "@/assets/cat-beer.png";
+import kenyanImg from "@/assets/cat-kenyan.png";
 
 export type Category =
   | "Whisky"
